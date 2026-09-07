@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "Punch Desk",
+    "slug": "punch-desk",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "punchdesk",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.emergent.gaydatingengine.p0n5wm",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Show people nearby.",
+        "NSUserNotificationsUsageDescription": "Stay close to new connections."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#0C0D10"
+      },
+      "package": "com.emergent.gaydatingengine.p0n5wm",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION", "POST_NOTIFICATIONS"]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-image.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+        "backgroundColor": "#0C0D10"
+        }
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-location",
+      "expo-notifications",
+      "expo-secure-store",
+      "expo-web-browser",
+      "expo-status-bar"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "summary": "Validated live backend and mobile web onboarding. Backend regression passed; prior and current preview checks reached OTP and permissions successfully. One repeat-phone browser attempt was rate-limited as designed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/test_punchdesk_regression.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Align the frontend API configuration with the required EXPO_BACKEND_URL contract (current code/env use EXPO_PUBLIC_BACKEND_URL).",
+    "Add data-testid/testID attributes to form inputs, primary actions, bottom tabs, and like/pass controls for reliable mobile regression coverage.",
+    "Replace LogBox.ignoreAllLogs(true) with targeted ignores so rendering/integration errors are observable."
+  ],
+  "critical_code_review_comments": [
+    "src/api.ts reads EXPO_PUBLIC_BACKEND_URL while the platform contract specifies EXPO_BACKEND_URL; the current preview works only because the env contains the former.",
+    "Most interactive React Native controls lack testID attributes, contrary to the testing/accessibility contract.",
+    "The mobile UI displays a fixed 25 km radius instead of the backend-driven config location.defaultRadius."
+  ],
+  "updated_files": ["/app/backend/tests/test_punchdesk_regression.py", "/app/test_reports/iteration_1.json"],
+  "success_rate": {"backend": "100% (1/1 regression test)", "frontend": "80% (welcome -> phone -> OTP -> permissions passed; repeat-phone attempt stopped by expected 429)"},
+  "seed_data_creation": "Created one TEST_ prefixed user/profile through the regression test; no seeded data modified.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Demo OTP 123456 is intentionally enabled. Razorpay checkout returns 503 configuration pending because plan credentials are absent; this is expected. FCM registration is guarded on web and was not exercised natively.",
+  "rca_of_issue": "The failed second browser flow reused +919876543210 shortly after the earlier flow. The API correctly enforced the one-minute OTP request throttle (429), leaving the UI on phone entry; use a new test phone for repeat onboarding tests."
+}

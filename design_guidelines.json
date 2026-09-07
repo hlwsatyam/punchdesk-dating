@@ -1,0 +1,154 @@
+{
+  "app_name": "Punch Desk",
+  "personality": "6 Glass / Luxe DARK",
+  "personality_one_liner": "Cinematic, nocturnal dating platform with frosted glass cards, restrained obsidian depth, and high-value intentional connection.",
+  "color": {
+    "surface": "#0C0D10",
+    "onSurface": "#F4F4F6",
+    "surfaceSecondary": "#16181D",
+    "onSurfaceSecondary": "#E2E2E6",
+    "surfaceTertiary": "#20232A",
+    "onSurfaceTertiary": "#C5C5CC",
+    "surfaceInverse": "#FFFFFF",
+    "onSurfaceInverse": "#0C0D10",
+    "brand": "#C29B38",
+    "brandPrimary": "#D4AF37",
+    "onBrandPrimary": "#0C0D10",
+    "brandSecondary": "#8C7124",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#2E2713",
+    "onBrandTertiary": "#EEDD99",
+    "success": "#2D6A4F",
+    "onSuccess": "#E8F5E9",
+    "warning": "#B7791F",
+    "onWarning": "#FFF8E1",
+    "error": "#9B2C2C",
+    "onError": "#FFEBEE",
+    "info": "#2B6CB0",
+    "onInfo": "#E3F2FD",
+    "border": "#2A2E39",
+    "borderStrong": "#4A5061",
+    "divider": "#1E222B",
+    "muted": "#8A8F9D",
+    "onBrand": "#0C0D10"
+  },
+  "typography": {
+    "displayFontFamily": "Cormorant Garamond",
+    "textFontFamily": "Switzer",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous vertical breathing room, comfortable touch targets, fixed bottom action safe-area alignment.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "0",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use frosted glass overlays on hero cards and profile stacks",
+      "Apply translucent blur to sticky bottom navigation and headers",
+      "Pair blur with ≥75% dark surface tint for crisp text legibility"
+    ],
+    "dont's": [
+      "Never apply blur to form inputs or dense text blocks",
+      "Avoid stacking more than two glass surfaces in a single viewport"
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Splash & Onboarding",
+      "purpose": "Cinematic introductory flow establishing brand exclusivity, privacy guarantees, and flexible dating mode selection.",
+      "states": {
+        "loading": "Centered minimalist golden monogram pulse on obsidian background",
+        "empty": "N/A",
+        "error": "Toast alert with retry for secure gateway connection failure"
+      },
+      "layout": "Full-bleed photographic hero backdrop with 3-stop vertical gradient scrim, centered editorial serif headline, configurable mode selector pill, and sticky bottom primary action button."
+    },
+    {
+      "name": "Discovery / Swipe",
+      "purpose": "Immersive card stack for location-based nearby discovery with distance indicators and photo carousels.",
+      "states": {
+        "loading": "Shimmer skeleton cards mirroring profile card proportions",
+        "empty": "Warm editorial illustration with statement headline and distance radius expansion control",
+        "error": "Full-screen state with retry action for geolocation services error"
+      },
+      "layout": "Edge-to-edge interactive card stack with frosted glass profile overlay, image carousel indicators, and fixed floating action bar at thumb-zone with haptic feedback."
+    },
+    {
+      "name": "Matches & Real-Time Chat",
+      "purpose": "Mutual connection hub and high-performance WebSocket messaging interface with photo request toggles.",
+      "states": {
+        "loading": "Horizontal avatar skeleton loader plus message thread line placeholders",
+        "empty": "Clean empty state encouraging profile completion or distance expansion",
+        "error": "Connection banner with manual reconnect action"
+      },
+      "layout": "Top horizontal pinned matches rail followed by vertical conversation list with unread badges, timestamp metadata, and verified status indicators."
+    },
+    {
+      "name": "Profile Details & Photo Request",
+      "purpose": "Comprehensive profile inspection with prompt cards, verified badges, and secure photo request permissions.",
+      "states": {
+        "loading": "Vertical placeholder blocks matching prompt card dimensions",
+        "empty": "No additional photos shared yet prompt with request button",
+        "error": "Inline error banner with dismiss action"
+      },
+      "layout": "Scrollable immersive detail view with full-bleed photo gallery, expandable bio prompt cards, secure photo request status bar, and sticky report/block options."
+    },
+    {
+      "name": "Subscriptions & Admin Portal",
+      "purpose": "Razorpay premium tier gateway and robust admin configuration engine for dynamic dating niche controls.",
+      "states": {
+        "loading": "Skeleton card loader for subscription tier comparison table",
+        "empty": "No active subscriptions or logs found",
+        "error": "Payment gateway timeout warning with secure retry"
+      },
+      "layout": "Structured card tiers with gold accent borders, feature comparison checklist, razorpay secure checkout integration, and administrative configuration toggles."
+    }
+  ],
+  "images": {
+    "hero_backdrop": {
+      "url": "https://images.unsplash.com/photo-1630026317249-c1c83b21ea07?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "dark": "https://images.unsplash.com/photo-1630026317249-c1c83b21ea07?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Moody modern portrait representing Punch Desk aesthetic"
+    },
+    "secondary_backdrop": {
+      "url": "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "dark": "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Sophisticated evening portrait with cinematic lighting"
+    }
+  },
+  "instructions_to_main_agent": "Ensure the codebase is strictly segregated into three folders: mobile (Expo React Native), backend (Python FastAPI), and admin_web (React Admin Web Panel + Landing Page). Never hard-code dating niches; rely on the backend configuration engine for app name, modes, options, and profile schema. Maintain WCAG AAA contrast compliance against the obsidian glass surfaces, enforce 44x44pt minimum touch targets, and apply the 3-stop gradient scrim on all image overlays."
+}
