@@ -1,8 +1,11 @@
 """Punch Desk FastAPI application factory."""
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .core import client, db, logger
 from .routers import (
@@ -55,6 +58,22 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # Mount static assets for admin panel and landing page under /api/ so the
+    # Kubernetes ingress rewrites them to the backend (only /api/* hits port 8001).
+    web_root = Path(__file__).resolve().parent.parent.parent / "web"
+    if (web_root / "admin").exists():
+        app.mount(
+            "/api/admin-panel",
+            StaticFiles(directory=str(web_root / "admin"), html=True),
+            name="admin-panel",
+        )
+    if (web_root / "landing").exists():
+        app.mount(
+            "/api/site",
+            StaticFiles(directory=str(web_root / "landing"), html=True),
+            name="landing-site",
+        )
 
     @app.on_event("startup")
     async def _startup() -> None:  # noqa: RUF029

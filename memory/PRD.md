@@ -29,11 +29,15 @@ Build **Punch Desk**, a premium, reusable, configuration-driven dating engine â€
 - **Photo requests**: `POST/GET /api/photo-requests`, `POST /api/photo-requests/{id}/decision` with rate limits and notifications.
 - **Blocks & reports**: bidirectional block hide from discovery, category-validated reports, moderation service.
 - **Support tickets**: create/list/get/reply for user + admin reply route.
-- **Firebase provider**: `services/notifications.py` initializes only when service-account JSON is supplied; safely no-ops otherwise. Every notification is still persisted to `db.notifications` for future replay.
+- **Firebase provider**: `services/notifications.py` initializes only when service-account JSON is supplied; safely no-ops otherwise. Every notification is still persisted to `db.notifications` for future replay. **NOW ACTIVE** â€” `firebase-service-account.json` present at backend root, project `punch-desk-5f7b7`, Android package `com.emergent.gaydatingengine.p0n5wm`. Startup logs "Firebase Admin SDK initialized".
 - **Razorpay**: split into `services/razorpay_provider.py` covering subscriptions AND one-time orders with signature verification. Verify endpoints: `/api/subscriptions/verify`, `/api/payments/verify`; webhook idempotency by `X-Razorpay-Event-Id`.
 - **Admin**: `/api/admin/overview`, `/config`, `/users` (+status action), `/reports` (+action), `/support/tickets` (+status +reply), `/analytics`, `/audit-logs`.
 - **Account lifecycle**: heartbeat + account deletion endpoints.
 - **Mobile**: new Messages tab (matches strip + conversations list), match celebration modal, `/chat/[id]` conversation screen with WebSocket + optimistic sends + reconnect, `/support` ticket screen, more-menu on discovery card with Request photos / Report / Block, cold-start-safe "reconnecting" indicator.
+- **Brand asset**: user-supplied PunchDesk premium logo now used on splash, adaptive Android icon, iOS icon, welcome hero, and compact brand mark on every onboarding screen.
+- **Admin web** (`/api/admin-panel/`): premium Vite-style SPA using Preact + Tailwind CDN. Login by `X-Admin-Key`. Screens: Dashboard (metrics + config snapshot + feature flags), Users (search/status/suspend/ban/reactivate), Reports (queue + dismiss/warn/suspend/ban actions), Support (inbox + threaded messages + admin reply + status change), App configuration (branding, radius, permissions, feature flags, options), Plans, Analytics (users/matches/revenue bar charts, 7/30/90 day), Audit logs. Uses real backend APIs.
+- **Landing site** (`/api/site/`): premium single-page marketing site with animated CSS phone mockups (Discover/Match/Chat/Premium/Photo-requests via interactive chip switcher), star-field backdrop, feature grid, three-step how-it-works, pricing plans, testimonials, FAQ accordion, waitlist form wired to `/api/auth/request-otp`, and footer.
+- Both web deliverables mounted under `/api/*` so Kubernetes ingress routes them to backend without extra ports.
 
 ## Test coverage
 - Regression suite in `/app/backend/tests/test_punchdesk_regression.py`: 20/20 passing against the public backend URL.

@@ -19,7 +19,7 @@ import {
   View,
 } from "react-native";
 
-import { BrandMark } from "@/src/components/brand-mark";
+import { BrandMark, BrandHero } from "@/src/components/brand-mark";
 import { ProfileCard } from "@/src/components/profile-card";
 import { api } from "@/src/api";
 import { registerNativePushToken } from "@/src/notifications";
@@ -556,15 +556,12 @@ export default function Index() {
 function Welcome({ config, onStart, styles, insets }: any) {
   return (
     <View style={styles.root}>
-      <View style={[styles.welcome, { paddingTop: insets.top + 36, paddingBottom: insets.bottom + 20 }]}>
+      <View style={[styles.welcome, { paddingTop: insets.top + 20, paddingBottom: insets.bottom + 20 }]}>
         <View>
-          <BrandMark />
-          <View style={styles.heroOrb}>
-            <Ionicons name="heart" size={72} color={styles.heroHeart.color} />
-          </View>
-          <Text style={styles.eyebrow}>A MORE INTENTIONAL WAY TO MEET</Text>
-          <Text style={styles.heroTitle}>Closer feels{`\n`}better.</Text>
-          <Text style={styles.heroCopy}>{config.tagline}</Text>
+          <BrandHero />
+          <Text style={[styles.eyebrow, { marginTop: 12, textAlign: "center" }]}>A MORE INTENTIONAL WAY TO MEET</Text>
+          <Text style={[styles.heroTitle, { textAlign: "center" }]}>Closer feels{`\n`}better.</Text>
+          <Text style={[styles.heroCopy, { textAlign: "center", alignSelf: "center" }]}>{config.tagline}</Text>
         </View>
         <View>
           <View style={styles.trustRow}>

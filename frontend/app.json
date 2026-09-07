@@ -4,7 +4,7 @@
     "slug": "punch-desk",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/punch-desk-logo.png",
     "scheme": "punchdesk",
     "userInterfaceStyle": "dark",
     "ios": {
@@ -18,10 +18,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/punch-desk-logo.png",
         "backgroundColor": "#0C0D10"
       },
       "package": "com.emergent.gaydatingengine.p0n5wm",
+      "googleServicesFile": "./google-services.json",
       "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION", "POST_NOTIFICATIONS"]
     },
     "web": {
@@ -34,8 +35,8 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-image.png",
-          "imageWidth": 200,
+          "image": "./assets/images/punch-desk-logo.png",
+          "imageWidth": 220,
           "resizeMode": "contain",
         "backgroundColor": "#0C0D10"
         }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030593602442",
+    "project_id": "punch-desk-5f7b7",
+    "storage_bucket": "punch-desk-5f7b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030593602442:android:4d698ed990aba142a2de73",
+        "android_client_info": {
+          "package_name": "com.emergent.gaydatingengine.p0n5wm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP9YEotAJHgHCZrofUc1ZU7Ny_BQCXDdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

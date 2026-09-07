@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punch Desk — Meet people who are actually nearby.</title>
+    <meta name="description" content="Punch Desk is a premium gay dating experience built for real, nearby connections." />
+    <link rel="icon" href="https://customer-assets-lxgj4vgw.emergentagent.net/job_8f5fb822-33ca-4f37-ba3f-b57a06b6bad6/artifacts/tliorn2v_ChatGPT%20Image%20Sep%207%2C%202026%2C%2001_58_08%20PM.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              obsidian: "#0C0D10",
+              obsidian2: "#16181D",
+              obsidian3: "#20232A",
+              gold: "#D4AF37",
+              gold2: "#8C7124",
+              goldTint: "#2E2713",
+              muted: "#8A8F9D",
+              border: "#2A2E39",
+              rose: "#F5C6D8",
+              magenta: "#EC4899",
+              violet: "#8B5CF6",
+              cyan: "#22D3EE",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+            keyframes: {
+              float: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-8px)" } },
+              shimmer: { "0%": { backgroundPosition: "-200% 0" }, "100%": { backgroundPosition: "200% 0" } },
+              pulseGlow: { "0%,100%": { opacity: "0.6" }, "50%": { opacity: "1" } },
+            },
+            animation: {
+              float: "float 5s ease-in-out infinite",
+              shimmer: "shimmer 3s linear infinite",
+              pulseGlow: "pulseGlow 2.4s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="bg-obsidian text-white font-body antialiased overflow-x-hidden">
+    <div id="stars" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- NAV -->
+    <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-obsidian/70 border-b border-white/5">
+      <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <img src="https://customer-assets-lxgj4vgw.emergentagent.net/job_8f5fb822-33ca-4f37-ba3f-b57a06b6bad6/artifacts/tliorn2v_ChatGPT%20Image%20Sep%207%2C%202026%2C%2001_58_08%20PM.png" alt="Punch Desk" class="w-9 h-9 rounded-xl object-cover"/>
+          <span class="font-display font-extrabold text-lg tracking-tight">Punch <span class="text-gold">Desk</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-white/70">
+          <a href="#features" class="hover:text-white transition">Features</a>
+          <a href="#how" class="hover:text-white transition">How it works</a>
+          <a href="#pricing" class="hover:text-white transition">Membership</a>
+          <a href="#faq" class="hover:text-white transition">FAQ</a>
+        </nav>
+        <a href="#cta" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold text-obsidian font-bold text-sm hover:bg-gold/90 transition">
+          Get the app
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative pt-32 pb-20 px-6 z-10">
+      <div class="mx-auto max-w-6xl grid md:grid-cols-2 gap-14 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs tracking-widest text-white/70 font-semibold mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulseGlow"></span>
+            A MORE INTENTIONAL WAY TO MEET
+          </div>
+          <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.02] tracking-tight">
+            Meet people
+            <span class="block bg-gradient-to-r from-gold via-rose to-magenta bg-clip-text text-transparent">who are actually</span>
+            <span class="italic font-medium text-white/85">nearby.</span>
+          </h1>
+          <p class="mt-6 text-lg text-white/70 max-w-lg leading-relaxed">
+            Punch Desk is a premium gay dating experience built for real, close-by connections — verified profiles, private photo control, and effortless conversations.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#cta" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold text-obsidian font-bold hover:brightness-110 transition">
+              Get started
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#features" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 text-white hover:bg-white/5 transition">
+              Explore features
+            </a>
+          </div>
+          <div class="mt-10 flex items-center gap-6 text-sm text-white/60">
+            <div class="flex -space-x-3">
+              <div class="w-8 h-8 rounded-full border-2 border-obsidian bg-gradient-to-br from-magenta to-violet"></div>
+              <div class="w-8 h-8 rounded-full border-2 border-obsidian bg-gradient-to-br from-cyan to-violet"></div>
+              <div class="w-8 h-8 rounded-full border-2 border-obsidian bg-gradient-to-br from-gold to-rose"></div>
+            </div>
+            Trusted by an early crew making moves in Bengaluru, Mumbai & Delhi.
+          </div>
+        </div>
+
+        <!-- Phone mockup rendered in CSS -->
+        <div class="relative flex justify-center">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-80 h-80 rounded-full bg-gradient-to-br from-magenta/30 via-violet/20 to-cyan/20 blur-3xl"></div>
+          </div>
+          <div class="phone relative" data-mode="discover"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE APP SHOWCASE -->
+    <section id="showcase" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-gold text-xs font-bold tracking-widest">LIVE APP PREVIEW</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3 leading-tight">Every screen crafted for connection.</h2>
+          <p class="mt-3 text-white/60 max-w-2xl mx-auto">Real, rendered UI — not screenshots. Tap a chip to switch views.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="mode-switcher">
+          <button data-mode="discover" class="mode-btn is-active">Discover</button>
+          <button data-mode="match">Match moment</button>
+          <button data-mode="chat">Chat</button>
+          <button data-mode="premium">Premium</button>
+          <button data-mode="requests">Photo requests</button>
+        </div>
+        <div class="flex justify-center">
+          <div class="phone phone-lg" id="showcase-phone" data-mode="discover"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <div class="text-gold text-xs font-bold tracking-widest">EVERY DETAIL, DELIBERATE</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3">Built for real connection.</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="white" stroke-width="2"/><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Z" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <h3>People nearby</h3>
+            <p>Discovery ranked by real distance and shared energy — with your exact location kept private.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#D4AF37,#F59E0B)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 15 9l7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Smart matching</h3>
+            <p>Reciprocal likes create a match with shared interest talking points — never wonder what to say.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#22D3EE,#3B82F6)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h16" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Real-time chat</h3>
+            <p>WebSocket delivery with typing indicators, read receipts, and instant push — even when the app is closed.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#F472B6,#F97316)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="white" stroke-width="2"/><path d="M8 6V4a4 4 0 0 1 8 0v2" stroke="white" stroke-width="2"/></svg>
+            </div>
+            <h3>Photo requests</h3>
+            <p>Private photos stay yours. Approve access one person at a time and revoke it whenever you want.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m12 3 3 6 6 1-5 5 1 7-5-3-5 3 1-7-5-5 6-1z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Premium membership</h3>
+            <p>Priority discovery, unlimited likes, and expressive tools — cancel any time from the app.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#10B981,#22D3EE)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v5c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Privacy & safety</h3>
+            <p>Block, report, and community moderation — with human review and clear, human responses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-gold text-xs font-bold tracking-widest">HOW IT WORKS</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3">Three steps to a real hello.</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="step">
+            <span class="step-index">01</span>
+            <h3>Sign up in seconds</h3>
+            <p>Mobile number + OTP. No passwords. No noise. Age-verified and permission-first.</p>
+          </div>
+          <div class="step">
+            <span class="step-index">02</span>
+            <h3>Meet people nearby</h3>
+            <p>Discovery reads your location privately, showing profiles within your chosen radius.</p>
+          </div>
+          <div class="step">
+            <span class="step-index">03</span>
+            <h3>Start something real</h3>
+            <p>When two people say yes, a conversation opens with real interest cues to break the ice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-5xl">
+        <div class="text-center mb-14">
+          <div class="text-gold text-xs font-bold tracking-widest">MEMBERSHIP</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3">Meet everyone free. Go premium when it&rsquo;s worth it.</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="plan">
+            <div class="text-white/60 text-sm font-semibold">FREE</div>
+            <div class="mt-2 flex items-baseline gap-2"><span class="text-4xl font-display font-extrabold">₹0</span><span class="text-white/50">/ forever</span></div>
+            <ul class="mt-6 space-y-3 text-white/70">
+              <li>✓ Nearby discovery</li>
+              <li>✓ Unlimited chat with matches</li>
+              <li>✓ Photo request controls</li>
+            </ul>
+          </div>
+          <div class="plan plan-gold">
+            <div class="text-obsidian text-sm font-bold uppercase tracking-widest">Premium</div>
+            <div class="mt-2 flex items-baseline gap-2"><span class="text-4xl font-display font-extrabold text-obsidian">₹799</span><span class="text-obsidian/70">/ month</span></div>
+            <ul class="mt-6 space-y-3 text-obsidian/80 font-medium">
+              <li>★ Priority discovery</li>
+              <li>★ Unlimited likes</li>
+              <li>★ Verified badge</li>
+              <li>★ Read receipts everywhere</li>
+              <li>★ Cancel any time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center mb-14">
+          <div class="text-gold text-xs font-bold tracking-widest">EARLY LOVE</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3">Real reviews, real names withheld.</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="quote">
+            <p>&ldquo;It feels intentional in a way most apps forgot. I met someone in the same neighbourhood within a week.&rdquo;</p>
+            <div class="mt-4 text-sm text-white/50">— A., Bengaluru</div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;The photo request thing is exactly what I&rsquo;ve wanted for years. Finally, control that respects everyone.&rdquo;</p>
+            <div class="mt-4 text-sm text-white/50">— R., Mumbai</div>
+          </div>
+          <div class="quote">
+            <p>&ldquo;It just looks and feels expensive in the best way. Chat is instant. It&rsquo;s the small things.&rdquo;</p>
+            <div class="mt-4 text-sm text-white/50">— K., Delhi</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-3xl">
+        <div class="text-center mb-14">
+          <div class="text-gold text-xs font-bold tracking-widest">FAQ</div>
+          <h2 class="font-display text-4xl md:text-5xl font-extrabold mt-3">Good questions.</h2>
+        </div>
+        <div class="space-y-3" id="faq-list"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="relative py-24 px-6 z-10">
+      <div class="mx-auto max-w-4xl text-center rounded-3xl p-10 md:p-16 bg-gradient-to-br from-obsidian2 to-obsidian border border-white/10 overflow-hidden relative">
+        <div class="absolute inset-0 pointer-events-none opacity-70" style="background: radial-gradient(circle at 20% 20%, rgba(212,175,55,0.15), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.12), transparent 40%);"></div>
+        <div class="relative">
+          <h2 class="font-display text-4xl md:text-6xl font-extrabold leading-tight">Ready when you are.</h2>
+          <p class="mt-4 text-white/70 max-w-xl mx-auto">Punch Desk is currently rolling out on iOS and Android. Add your number and we&rsquo;ll drop you a link the moment you&rsquo;re in.</p>
+          <form id="waitlist" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+            <input type="tel" required placeholder="+91 98765 43210" class="flex-1 h-12 rounded-full bg-white/5 border border-white/10 px-5 text-white placeholder:text-white/40 focus:outline-none focus:border-gold" />
+            <button class="h-12 px-6 rounded-full bg-gold text-obsidian font-bold hover:brightness-110 transition">Join waitlist</button>
+          </form>
+          <div id="waitlist-msg" class="mt-4 text-sm text-white/60"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative py-14 px-6 z-10 border-t border-white/5">
+      <div class="mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
+        <div class="flex items-center gap-3">
+          <img src="https://customer-assets-lxgj4vgw.emergentagent.net/job_8f5fb822-33ca-4f37-ba3f-b57a06b6bad6/artifacts/tliorn2v_ChatGPT%20Image%20Sep%207%2C%202026%2C%2001_58_08%20PM.png" alt="Punch Desk" class="w-8 h-8 rounded-lg object-cover"/>
+          <span>© 2026 Punch Desk. A more intentional way to meet.</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Support</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
