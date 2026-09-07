@@ -2,59 +2,66 @@
 
 ## Problem statement
 
-Build Punch Desk, a premium dating product initially configured for gay dating while remaining a reusable, backend-driven dating engine. The product includes a native Expo mobile experience, FastAPI/MongoDB engine, and separate web foundations for landing and admin operations.
+Build **Punch Desk**, a premium, reusable, configuration-driven dating engine — initially positioned for gay dating but the same codebase must switch to a general dating niche by changing backend configuration alone. The product includes an Expo React Native mobile app, FastAPI/MongoDB backend, and separate foundations for a premium admin panel and landing page.
 
 ## Architecture
 
-- `/app/frontend`: Expo React Native mobile application with Expo Router, TanStack Query, safe-area layouts, centralized dark luxe theme, secure token storage, permission flow, and native notification-token adapter.
-- `/app/backend`: FastAPI API with MongoDB, configuration engine, demo OTP/JWT auth, profile/discovery/matching foundations, device registration, chat persistence endpoints, subscription plans, Razorpay provider boundary, and webhook verification boundary.
-- `/app/admin_web`: separate React/Vite-ready landing page and admin preview foundation with CSS-built phone previews and a premium dashboard shell.
+- `/app/frontend` — Expo (React Native, Expo Router, TypeScript, TanStack Query). Dark luxe theme (`src/theme.ts`), safe-area layouts, secure token storage, permission flow, native push token adapter, WebSocket chat hook (`src/hooks/use-chat-socket.ts`).
+- `/app/backend` — FastAPI monorepo split into modular package `backend/app/`:
+  - `app/core.py` — env, Mongo client, JWT/OTP helpers, `current_user`, `admin_guard`, image validation.
+  - `app/schemas.py` — Pydantic models for every endpoint.
+  - `app/services/` — `config_service`, `matching`, `notifications` (Firebase), `razorpay_provider`, `realtime` (WebSocket manager).
+  - `app/routers/` — `health`, `config`, `auth`, `profile`, `discovery`, `chat` (REST + WebSocket), `moderation`, `support`, `subscriptions`, `devices`, `admin`.
+  - `server.py` — thin entrypoint that delegates to `app.main.create_app()`.
+- `/app/admin_web` — foundation for the future premium Vite admin dashboard.
 
-## Personas
+## Implemented milestones
 
-- Member: an adult looking for nearby, intentional connections with privacy controls.
-- Moderator/support agent: reviews reports and helps members.
-- Admin: configures the dating niche, branding, profile fields, feature flags, plans, and metrics.
+### 2026-09-07 — Foundation (previous session)
+- Premium obsidian/gold onboarding + phone/OTP/permissions/setup/discovery/likes/profile in mobile.
+- Backend AppConfig, seed data, demo OTP + JWT, profile CRUD, discovery/likes/pass, matches skeleton, subscription plans, Razorpay provider stub, webhook signature boundary.
+- Landing/admin preview scaffolds, environment templates, native push adapter.
+- Photo upload → local `uploads/`, GPS/geospatial discovery, shared-interest match explanation.
 
-## Core requirements (static)
+### 2026-09-07 — Depth pass (this session)
+- **Backend refactor**: monolithic `server.py` broken into `app/` package (core, schemas, services, routers) — server.py is now ~3 lines.
+- **Real-time chat**: WebSocket route `/api/ws/chat?token=...` with per-user connection manager, message delivery, typing indicators, read receipts, unread counter per user, presence, ping/pong keep-alive. REST endpoints `GET /api/chat`, `GET/POST /api/chat/{id}/messages`, `POST /api/chat/{id}/read` with cursor pagination.
+- **Photo requests**: `POST/GET /api/photo-requests`, `POST /api/photo-requests/{id}/decision` with rate limits and notifications.
+- **Blocks & reports**: bidirectional block hide from discovery, category-validated reports, moderation service.
+- **Support tickets**: create/list/get/reply for user + admin reply route.
+- **Firebase provider**: `services/notifications.py` initializes only when service-account JSON is supplied; safely no-ops otherwise. Every notification is still persisted to `db.notifications` for future replay.
+- **Razorpay**: split into `services/razorpay_provider.py` covering subscriptions AND one-time orders with signature verification. Verify endpoints: `/api/subscriptions/verify`, `/api/payments/verify`; webhook idempotency by `X-Razorpay-Event-Id`.
+- **Admin**: `/api/admin/overview`, `/config`, `/users` (+status action), `/reports` (+action), `/support/tickets` (+status +reply), `/analytics`, `/audit-logs`.
+- **Account lifecycle**: heartbeat + account deletion endpoints.
+- **Mobile**: new Messages tab (matches strip + conversations list), match celebration modal, `/chat/[id]` conversation screen with WebSocket + optimistic sends + reconnect, `/support` ticket screen, more-menu on discovery card with Request photos / Report / Block, cold-start-safe "reconnecting" indicator.
 
-- Configuration-driven app identity, theme, dating mode, options, profile fields, radius, permissions, feature flags, and plans.
-- Mobile-number OTP authentication with adult validation before production SMS integration.
-- Permission-first onboarding for location and notifications.
-- Profile setup, nearby discovery, like/pass actions, matching, chat persistence, photo requests, subscriptions, support, block/report, account deletion, and admin operations.
-- Approximate distance only; never expose exact user coordinates.
-- Server-side payment verification and idempotent Razorpay webhook handling.
-- FCM device token management and deep links for messages and matches.
+## Test coverage
+- Regression suite in `/app/backend/tests/test_punchdesk_regression.py`: 20/20 passing against the public backend URL.
+- Frontend UI smoke walkthrough (welcome → OTP → permissions → setup → tabs → more-sheet → support) validated via testing agent.
 
-## Implemented 2026-09-07
-
-- Replaced the starter screen with a premium obsidian/gold Punch Desk mobile flow: welcome, phone, OTP, permissions, profile setup, discovery, likes, profile, empty/error states, press feedback, and safe-area-aware bottom navigation.
-- Added backend app configuration endpoint, seeded plans/interests/demo profiles, demo OTP hashing/expiry/attempt limits, JWT sessions, profile CRUD, discovery interactions, matches, paginated chat reads, device registration, subscription plan reads, Razorpay provider/verifier boundary, and webhook signature/idempotency boundary.
-- Added separate `/app/admin_web` landing/admin preview with real CSS/React phone UI compositions, responsive feature sections, and dashboard metrics/chart shell.
-- Added environment templates, app permissions, native push token registration adapter, branded app metadata, and development test credentials documentation.
-
-## Prioritized backlog
-
-### P0 — next
-
-1. Add real SMS OTP provider adapter and production rate limiting by IP/device/phone.
-2. Add full profile photo upload/storage, geospatial discovery query, adult age validation, and privacy controls.
-3. Add WebSocket conversation events, optimistic mobile chat UI, read receipts, typing presence, and deep-link routing.
-4. Provide Razorpay plan/webhook configuration and Firebase service-account/native app files, then run test-mode checkout and physical-device FCM verification.
-
-### P1
-
-1. Photo request accept/reject flow, moderation reports, blocks, support tickets, and notification templates.
-2. Role-based admin authentication and connected users/reports/support/configuration screens.
-3. Analytics aggregation, audit logs, subscription lifecycle sync, and inactive-profile heartbeat processing.
-
-### P2
-
-1. Landing SEO metadata, testimonials/FAQ CMS, content management, and richer profile compatibility.
-2. FlashList/image caching, offline queues, background notification handling, accessibility audit, and performance instrumentation.
+## Reusability guarantees
+- Config-driven: `datingMode`, gender/orientation/relationship options, interests, profile fields, `reportCategories`, `supportCategories`, radius bounds, feature flags, theme, permissions — all sourced from `GET /api/config/app`. Admin can PATCH any of them at `/api/admin/config`.
+- Nothing in the codebase hard-codes "gay" outside the seed default in `AppConfig`.
 
 ## Known integration status
+- **Demo OTP**: working (code `123456`); real SMS provider is not connected.
+- **Razorpay**: subscription and order endpoints implemented with server-side signature verification and webhook idempotency. Live keys are configured in `.env`; **do not run uncontrolled real transactions**. Webhook secret and Razorpay plan id can be set via `RAZORPAY_WEBHOOK_SECRET` and `RAZORPAY_PLAN_ID` for test-mode validation.
+- **Firebase**: provider is credential-gated. To enable set `FIREBASE_SERVICE_ACCOUNT` (path to JSON or inline JSON) and optionally `FIREBASE_PROJECT_ID`. Push delivery only works on a native EAS build with `google-services.json` shipped. Package name / bundle id: `com.emergent.gaydatingengine.p0n5wm`.
 
-- Demo OTP is working. Real SMS is not connected.
-- Razorpay provider and verification code are implemented, but live checkout is not active until a Razorpay plan ID and webhook secret are configured; never trust client payment success.
-- Native push token registration is implemented. FCM delivery is not active until Firebase Admin credentials and Android/iOS native Firebase configuration are supplied.
+## Backlog (next iterations)
+
+### P0
+1. Admin panel: full Vite app connected to `/api/admin/*` (users, config editor, reports queue, support inbox, plans, analytics).
+2. Premium landing page: hero + CSS phone mockups + all sections listed in the PRD.
+3. Real SMS OTP provider adapter + IP/device/phone rate limiting.
+
+### P1
+1. Notification templates (`MATCH_CREATED`, `NEW_MESSAGE`, …) + admin CRUD.
+2. Deep-link handling in mobile (chat/match/profile) via `expo-linking`.
+3. Photo request flow in Messages tab (incoming list + decision UI).
+4. Optimistic chat with local cache, offline queue, background reconnection UX.
+
+### P2
+1. Analytics dashboards, audit logs UI, content management.
+2. Storage abstraction to move `uploads/` to managed object storage.
+3. Performance: FlashList, image caching, skeleton loaders, background heartbeats.

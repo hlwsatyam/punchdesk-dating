@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { Profile } from "@/src/types";
 import { makeStyles, useTheme } from "@/src/theme";
@@ -11,7 +12,7 @@ export function ProfileCard({ profile, index, onPass, onLike }: { profile: Profi
     <View style={styles.card} testID="profile-card">
       <View style={[styles.portrait, { backgroundColor: portraitColors[index % portraitColors.length] }]}>
         <View style={styles.portraitGlow} />
-        <Text style={styles.initial}>{profile.displayName.charAt(0)}</Text>
+        {profile.photos[0] ? <Image source={{ uri: profile.photos[0] }} contentFit="cover" style={StyleSheet.absoluteFillObject} /> : <Text style={styles.initial}>{profile.displayName.charAt(0)}</Text>}
         <View style={styles.scrim} />
         <View style={styles.cardInfo}>
           <View style={styles.nameRow}>

@@ -1,0 +1,43 @@
+{
+  "summary": "Comprehensive regression on Punch Desk premium refactor. Backend pytest suite grew to 20 tests covering health, config, OTP demo auth, profile enums+photo+location, discovery (with coordinate hiding), reciprocal like -> match with explanation.sharedInterests, matches list, chat REST + WebSocket message/typing delivery + bad-token rejection, photo requests, blocks (bidirectional discovery hide), reports (unsupported category + self-report), support tickets, admin key protection, and subscription plans/mine. All 20 backend tests passed on the public preview URL. Frontend flow verified on 390x844 viewport: welcome -> phone -> demo OTP 123456 (auto-fill hint visible) -> permissions -> setup -> Discover with tabs Discover/Messages/Profile, more sheet with Request photos/Report/Block actions, Profile shows Support entry and help icon in header. Deprecated packages check: none of expo-av / expo-barcode-scanner / expo-background-fetch are used.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Chat WebSocket status indicator",
+        "issue": "Header briefly displays 'Reconnecting…' after login even though backend accepts the ws (verified in /var/log/supervisor/backend.err.log). Not a functional bug, but consider hiding the label until first onclose or after a small delay for polish.",
+        "affected_testIDs": ["tab-messages"]
+      }
+    ],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_punchdesk_regression.py",
+    "/app/test_reports/pytest/pytest_results.xml",
+    "/app/test_reports/iteration_3.json"
+  ],
+  "action_items": [
+    "Optional: delay the 'Reconnecting…' pill by ~1.5s so the initial connection race does not flash to users on cold-start.",
+    "Optional: set a >=32 byte JWT_SECRET in production to remove PyJWT InsecureKeyLengthWarning already noted in iteration_2."
+  ],
+  "critical_code_review_comments": [
+    "server.py delegates cleanly to app.main.create_app(); router modularisation looks solid.",
+    "Discovery correctly strips 'location' before returning public profiles (see core.public_profile).",
+    "WebSocket route uses jwt.decode with HS256 – token expiry handled implicitly by PyJWT; consider explicit 4402 vs 4401 codes for token expired vs invalid to help client-side logout logic."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_punchdesk_regression.py",
+    "/app/test_reports/iteration_3.json",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "success_rate": {"backend": "100% (20/20)", "frontend": "100% for tested flows"},
+  "seed_data_creation": "Created several TEST_ prefixed users (TEST_UserA, TEST_UserB, TEST_UI, TEST_UI2) and TEST_-prefixed support ticket via the regression suite; no manual DB seeds added.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Reusable pytest file lives at /app/backend/tests/test_punchdesk_regression.py and depends on the `websockets` python package plus EXPO_PUBLIC_BACKEND_URL exported from /app/frontend/.env. It creates TEST_ prefixed users; adjust phone prefix generation if collisions occur. WebSocket parity test cross-connects two users to conversation created via reciprocal like, so run the whole file together. Admin endpoints return 503 with no ADMIN_API_KEY configured; subscription plans list is fine to hit but /api/subscriptions/checkout should NOT be triggered (live Razorpay keys)."
+}
